@@ -15,10 +15,10 @@ plugins {
 	id "idea"
 	id "eclipse"
 	id "jacoco"
-//	id "com.google.cloud.tools.jib"
-//	id "com.gorylenko.gradle-git-properties"
-//	id "org.sonarqube"
-//	id "io.spring.nohttp"
+	id "com.google.cloud.tools.jib"
+	id "com.gorylenko.gradle-git-properties"
+	id "org.sonarqube"
+	id "io.spring.nohttp"
 	// for gRPC
 	id 'com.google.protobuf' version '0.8.17'
 }
@@ -30,14 +30,14 @@ group = 'com.fleta.vodcontentsservice'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
-//apply from: "gradle/docker.gradle"
-//apply from: "gradle/sonar.gradle"
+apply from: "gradle/docker.gradle"
+apply from: "gradle/sonar.gradle"
 
-//if (project.hasProperty("prod") || project.hasProperty("gae")) {
-//	apply from: "gradle/profile_prod.gradle"
-//} else {
-//	apply from: "gradle/profile_dev.gradle"
-//}
+if (project.hasProperty("prod") || project.hasProperty("gae")) {
+	apply from: "gradle/profile_prod.gradle"
+} else {
+	apply from: "gradle/profile_dev.gradle"
+}
 
 if (project.hasProperty("war")) {
 	apply from: "gradle/war.gradle"
@@ -93,63 +93,63 @@ test {
 	reports.html.enabled = false
 }
 
-//task integrationTest(type: Test) {
-//	useJUnitPlatform()
-//	description = "Execute integration tests."
-//	group = "verification"
-//	include "**/*IT*", "**/*IntTest*"
-//
-//	testLogging {
-//		events 'FAILED', 'SKIPPED'
-//	}
-//
-//	if (project.hasProperty('testcontainers')) {
-//		environment 'SPRING_PROFILES_ACTIVE', 'testcontainers'
-//	}
-//
-//	// ignoreFailures true
-//	reports.html.enabled = false
-//}
+task integrationTest(type: Test) {
+	useJUnitPlatform()
+	description = "Execute integration tests."
+	group = "verification"
+	include "**/*IT*", "**/*IntTest*"
 
-//check.dependsOn integrationTest
-//task testReport(type: TestReport) {
-//	destinationDir = file("$buildDir/reports/tests")
-//	reportOn test
-//}
-//
-//task integrationTestReport(type: TestReport) {
-//	destinationDir = file("$buildDir/reports/tests")
-//	reportOn integrationTest
-//}
+	testLogging {
+		events 'FAILED', 'SKIPPED'
+	}
+
+	if (project.hasProperty('testcontainers')) {
+		environment 'SPRING_PROFILES_ACTIVE', 'testcontainers'
+	}
+
+	// ignoreFailures true
+	reports.html.enabled = false
+}
+
+check.dependsOn integrationTest
+task testReport(type: TestReport) {
+	destinationDir = file("$buildDir/reports/tests")
+	reportOn test
+}
+
+task integrationTestReport(type: TestReport) {
+	destinationDir = file("$buildDir/reports/tests")
+	reportOn integrationTest
+}
 
 
-//gitProperties {
-//	failOnNoGitDirectory = false
-//	keys = ["git.branch", "git.commit.id.abbrev", "git.commit.id.describe"]
-//}
-//
-//checkstyle {
-//	toolVersion "${checkstyleVersion}"
-//	configFile file("checkstyle.xml")
-//	checkstyleTest.enabled = false
-//}
-//nohttp {
-//	source.include "build.gradle", "README.md"
-//}
+gitProperties {
+	failOnNoGitDirectory = false
+	keys = ["git.branch", "git.commit.id.abbrev", "git.commit.id.describe"]
+}
+
+checkstyle {
+	toolVersion "${checkstyleVersion}"
+	configFile file("checkstyle.xml")
+	checkstyleTest.enabled = false
+}
+nohttp {
+	source.include "build.gradle", "README.md"
+}
 
 
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
-//	providedRuntime
-//	implementation.exclude module: "spring-boot-starter-tomcat"
-//	all {
-//		resolutionStrategy {
-//			// Inherited version from Spring Boot can't be used because of regressions:
-//			// To be removed as soon as spring-boot use the same version
-//		}
-//	}
+	providedRuntime
+	implementation.exclude module: "spring-boot-starter-tomcat"
+	all {
+		resolutionStrategy {
+			// Inherited version from Spring Boot can't be used because of regressions:
+			// To be removed as soon as spring-boot use the same version
+		}
+	}
 }
 
 repositories {
@@ -158,36 +158,34 @@ repositories {
 }
 
 dependencies {
-//	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//	implementation 'org.springframework.boot:spring-boot-starter-validation'
-//	implementation 'org.springframework.boot:spring-boot-starter-web'
-//	implementation 'org.springframework.data:spring-data-commons:2.5.4'
-//	implementation 'org.springframework.data:spring-data-relational:2.1.9'
-//	implementation 'org.springframework.data:spring-data-jpa:2.5.4'
-	implementation "org.springframework.boot:spring-boot-starter-data-redis"
-//	implementation 'org.apache.kafka:kafka-clients:2.8.0'
-//	compileOnly 'org.projectlombok:lombok'
-//	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-//	runtimeOnly 'org.postgresql:postgresql'
-//	annotationProcessor 'org.projectlombok:lombok'
-//	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-
-
 	implementation group: "com.megazone.framework", name: "mega-framework", version: "${megaDependenciesVersion}", {
 		exclude group: "org.springframework", module: "spring-webmvc"
 	}
+
+	implementation "io.dropwizard.metrics:metrics-core"
+	implementation "io.micrometer:micrometer-registry-prometheus"
+	implementation "io.micrometer:micrometer-registry-prometheus"
+	implementation 'com.zaxxer:HikariCP:5.0.0'
+
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.springframework.data:spring-data-relational:2.2.4'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "org.springframework.boot:spring-boot-starter-logging"
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-configuration-processor'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.apache.commons:commons-lang3'
+	implementation 'commons-beanutils:commons-beanutils:1.9.4'
+
+
 	runtimeOnly 'org.postgresql:postgresql'
 
 	implementation "io.netty:netty-tcnative-boringssl-static"
@@ -196,14 +194,14 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.0.3'
 
 	implementation 'org.springframework.retry:spring-retry:1.3.1'
-	implementation 'org.springframework.boot:spring-boot-starter-security:2.5.4'
+	implementation "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 
 	implementation 'org.liquibase:liquibase-core:4.4.3'
 
-//	 api documentation
+	// api documentation
 	implementation 'org.springdoc:springdoc-openapi-ui:1.5.10'
 
 	//for gRPC"
@@ -218,18 +216,17 @@ dependencies {
 	implementation 'org.zalando:problem-spring-web:0.26.2'
 
 
-	implementation "com.fasterxml.jackson.datatype:jackson-datatype-hppc"
-	implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
-	implementation "com.fasterxml.jackson.module:jackson-module-jaxb-annotations"
-	implementation "com.fasterxml.jackson.core:jackson-annotations"
-	implementation "com.fasterxml.jackson.core:jackson-databind"
+	implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+	implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+	implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+	implementation "com.fasterxml.jackson.datatype:jackson-datatype-hppc:${jacksonVersion}"
+	implementation "com.fasterxml.jackson.module:jackson-module-jaxb-annotations:${jacksonVersion}"
+	implementation 'org.apache.tomcat.embed:tomcat-embed-core:9.0.52'
+
 	implementation 'org.modelmapper:modelmapper:2.4.4'
 	implementation 'org.apache.kafka:kafka-clients:2.8.0'
 
-
-
 }
-
 protobuf {
 	protoc {
 		// The artifact spec for the Protobuf Compiler
@@ -254,3 +251,4 @@ test {
 }
 
 compileJava.dependsOn processResources
+processResources.dependsOn bootBuildInfo

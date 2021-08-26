@@ -99,3 +99,6 @@ grpc:
 
 repository-type: r2dbc
 #repository-type: redis
+springdoc:
+  api-docs:
+    enabled: false
