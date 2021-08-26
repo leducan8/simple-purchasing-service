@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity PtVoBuy.
+    -->
+    <changeSet id="20210720084211-1" author="mega">
+        <createTable tableName="pt_vo_buy">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="sa_id" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_pt_vo_buy__sa_id" />
+            </column>
+            <column name="mac_addr" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_pt_vo_buy__mac_addr" />
+            </column>
+            <column name="buy_date" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_pt_vo_buy__buy_date" />
+            </column>
+            <column name="product_id" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_pt_vo_buy__product_id" />
+            </column>
+            <column name="product_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pkg_yn" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="genre_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="buy_amt" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cp_use_yn" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pvs_trans_yn" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="refund_yn" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pvs_trans_no" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="expired_date" type="varchar(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_pt_vo_buy__expired_date" />
+            </column>
+            <column name="alwnce_charge" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="balace" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="offer_cd" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ofr_seq" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="error_msg" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="appl_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+    -->
+    <changeSet id="20210720084211-1-data" author="mega" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/pt_vo_buy.csv"
+                  separator=";"
+                  tableName="pt_vo_buy">
+            <column name="id" type="numeric"/>
+            <column name="sa_id" type="string"/>
+            <column name="mac_addr" type="string"/>
+            <column name="buy_date" type="string"/>
+            <column name="product_id" type="string"/>
+            <column name="product_name" type="string"/>
+            <column name="pkg_yn" type="string"/>
+            <column name="genre_name" type="string"/>
+            <column name="buy_amt" type="string"/>
+            <column name="cp_use_yn" type="string"/>
+            <column name="pvs_trans_yn" type="string"/>
+            <column name="refund_yn" type="string"/>
+            <column name="pvs_trans_no" type="string"/>
+            <column name="expired_date" type="string"/>
+            <column name="alwnce_charge" type="string"/>
+            <column name="balace" type="string"/>
+            <column name="offer_cd" type="string"/>
+            <column name="ofr_seq" type="string"/>
+            <column name="error_msg" type="string"/>
+            <column name="appl_type" type="string"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

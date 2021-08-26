@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package grpc.common;
+
+option java_package = "com.fleta.purchasingservice.grpc.common";
+option java_multiple_files = true;
+
+message PurchasingInput {
+    string cSaId = 1;
+}
+
+message PurchasingOutput {
+    string productId = 1;
+    string expiredDate = 2;
+}
+
+service PurchasingService {
+    rpc nxvod211TobeSql01901(PurchasingInput) returns (stream PurchasingOutput);
+}
