@@ -8,7 +8,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication(scanBasePackageClasses = PurchasingServiceApplication.class)
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
-
 public class PurchasingServiceApplication {
 
 	public static void main(String[] args) {
