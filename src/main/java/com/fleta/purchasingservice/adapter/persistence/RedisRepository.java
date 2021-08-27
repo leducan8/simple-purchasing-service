@@ -3,9 +3,9 @@ package com.fleta.purchasingservice.adapter.persistence;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fleta.purchasingservice.domain.dto.PurchasingDto;
-import com.fleta.purchasingservice.domain.model.PurchasingProjection;
 import com.fleta.purchasingservice.port.CommonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -29,17 +29,9 @@ public class RedisRepository implements CommonRepository {
     }
 
     @Override
-    public List<PurchasingDto> nxvod211TobeSql01901(String cSaId) {
-        // Redis 조회
-        List<PurchasingDto> redisList = getFromRedisNxvod211TobeSql01901(cSaId);
-        boolean nullsOnly = redisList.stream().allMatch(x -> x == null);
-        if (nullsOnly) {
-            // Redis에 없는 경우, RDB 조회
-            redisList = purchaseRepository.nxvod211TobeSql01901(cSaId);
-            // RDB에서 조회한 데이터를 Redis에 적재
-            setToRedisNxvod211TobeSql01901(cSaId, redisList);
-        }
-        return redisList;
+    @Cacheable(value = CacheKey.PRODUCT_KEY, key = "{#saId}")
+    public List<PurchasingDto> nxvod211TobeSql01901(String saId) {
+        return purchaseRepository.nxvod211TobeSql01901(saId);
     }
 
     /**
