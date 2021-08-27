@@ -222,7 +222,7 @@ dependencies {
 	implementation "com.fasterxml.jackson.datatype:jackson-datatype-hppc:${jacksonVersion}"
 	implementation "com.fasterxml.jackson.module:jackson-module-jaxb-annotations:${jacksonVersion}"
 	implementation 'org.apache.tomcat.embed:tomcat-embed-core:9.0.52'
-
+	implementation group: 'ch.simas.qlrm', name: 'qlrm', version: '1.7.1'
 	implementation 'org.modelmapper:modelmapper:2.4.4'
 	implementation 'org.apache.kafka:kafka-clients:2.8.0'
 

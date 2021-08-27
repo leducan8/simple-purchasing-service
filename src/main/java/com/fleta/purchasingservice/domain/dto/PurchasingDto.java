@@ -1,12 +1,11 @@
 package com.fleta.purchasingservice.domain.dto;
 
 import com.fleta.purchasingservice.grpc.common.PurchasingOutput;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Getter @Setter
+@Builder
+@ToString
 @NoArgsConstructor
 public class PurchasingDto {
     private String productId;
@@ -23,4 +22,27 @@ public class PurchasingDto {
                 .setExpiredDate(this.expiredDate)
                 .build();
     }
+
+    public static PurchasingDto buildFromPurchasingOutput(PurchasingOutput purchasingOutput) {
+        return new PurchasingDto(
+                purchasingOutput.getProductId(),
+                purchasingOutput.getExpiredDate());
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public void setExpiredDate(String expiredDate) {
+        this.expiredDate = expiredDate;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public String getExpiredDate() {
+        return expiredDate;
+    }
 }
+

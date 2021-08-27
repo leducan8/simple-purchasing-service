@@ -1,4 +1,4 @@
-package com.fleta.purchasingservice.domain.service;
+package com.fleta.purchasingservice;
 
 import com.fleta.purchasingservice.domain.service.PurchasingService;
 import io.grpc.ServerBuilder;

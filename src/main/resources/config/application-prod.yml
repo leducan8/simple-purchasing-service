@@ -106,7 +106,7 @@ mega:
 # Add your own application properties here, see the ApplicationProperties class
 # ===================================================================
 
-#repository-type: r2dbc
+#repository-type: jdbc
 repository-type: redis
 springdoc:
   api-docs:

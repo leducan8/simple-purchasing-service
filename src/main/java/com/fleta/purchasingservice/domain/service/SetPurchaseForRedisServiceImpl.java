@@ -1,7 +1,7 @@
 package com.fleta.purchasingservice.domain.service;
 
 import com.fleta.purchasingservice.domain.model.Sql019_01DtoProjection;
-import com.fleta.purchasingservice.port.SetPurchaseForRedisRepository;
+import com.fleta.purchasingservice.adapter.persistence.SetPurchaseForRedisRepository;
 import com.fleta.purchasingservice.port.SetPurchaseForRedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

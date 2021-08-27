@@ -1,4 +1,4 @@
-package com.fleta.purchasingservice.port;
+package com.fleta.purchasingservice.adapter.persistence;
 
 import com.fleta.purchasingservice.domain.model.PtVoBuy;
 import com.fleta.purchasingservice.domain.model.Sql019_01DtoProjection;

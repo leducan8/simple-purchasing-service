@@ -51,7 +51,7 @@ public class RedisSql019_01DtoController extends RedisDtoController {
      * 조건 조회
      */
     @GetMapping("/{saId}")
-    public ResponseEntity<List<PurchasingProjection>> getListBySaId(@PathVariable String saId) {
+    public ResponseEntity<List<PurchasingDto>> getListBySaId(@PathVariable String saId) {
         return new ResponseEntity<>(commonRepository.nxvod211TobeSql01901(saId), HttpStatus.OK);
     }
 
