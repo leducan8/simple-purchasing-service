@@ -13,10 +13,9 @@
 
 logging:
   level:
-    ROOT: DEBUG
-    com.megazone.framework: DEBUG
-    org.hibernate.SQL: DEBUG
-    com.fleta.purchasingservice: DEBUG
+    ROOT: INFO
+    com.megazone.framework: INFO
+    com.fleta.purchasingservice: INFO
 
 spring:
   devtools:
@@ -47,7 +46,7 @@ spring:
   # JPA properties
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: none
     show-sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -103,5 +102,5 @@ mega:
 # Add your own application properties here, see the ApplicationProperties class
 # ===================================================================
 
-repository-type: r2dbc
-#repository-type: redis
+#repository-type: jdbc
+repository-type: redis

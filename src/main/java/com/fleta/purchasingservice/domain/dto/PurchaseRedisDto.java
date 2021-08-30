@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Sql019_01Dto {
+public class PurchaseRedisDto {
     private String saId;
     private String productId;
     private String expiredDate;

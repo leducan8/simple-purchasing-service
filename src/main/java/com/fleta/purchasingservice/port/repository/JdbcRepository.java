@@ -1,8 +1,7 @@
-package com.fleta.purchasingservice.adapter.persistence;
+package com.fleta.purchasingservice.port.repository;
 
+import com.fleta.purchasingservice.adapter.persistence.PurchaseRepositoryImpl;
 import com.fleta.purchasingservice.domain.dto.PurchasingDto;
-import com.fleta.purchasingservice.domain.model.PurchasingProjection;
-import com.fleta.purchasingservice.port.CommonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
@@ -19,7 +18,7 @@ import java.util.List;
 public class JdbcRepository implements CommonRepository {
 
     @Autowired
-    private PurchaseRepository purchaseRepository;
+    private PurchaseRepositoryImpl purchaseRepository;
 
     @Override
     public List<PurchasingDto> nxvod211TobeSql01901(String cSaId) {

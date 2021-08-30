@@ -4,7 +4,7 @@ import com.fleta.purchasingservice.domain.dto.PurchasingDto;
 import com.fleta.purchasingservice.grpc.common.PurchasingInput;
 import com.fleta.purchasingservice.grpc.common.PurchasingOutput;
 import com.fleta.purchasingservice.grpc.common.PurchasingServiceGrpc;
-import com.fleta.purchasingservice.port.CommonRepository;
+import com.fleta.purchasingservice.port.repository.CommonRepository;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,11 +13,11 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class PurchasingService extends PurchasingServiceGrpc.PurchasingServiceImplBase  {
+public class PurchaseGrpcServiceImpl extends PurchasingServiceGrpc.PurchasingServiceImplBase {
 
     private CommonRepository commonRepository;
 
-    public PurchasingService(CommonRepository commonRepository) {
+    public PurchaseGrpcServiceImpl(CommonRepository commonRepository) {
         this.commonRepository = commonRepository;
     }
 

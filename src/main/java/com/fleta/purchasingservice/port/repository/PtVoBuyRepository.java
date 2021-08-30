@@ -1,4 +1,4 @@
-package com.fleta.purchasingservice.port;
+package com.fleta.purchasingservice.port.repository;
 
 import com.fleta.purchasingservice.domain.model.PtVoBuy;
 

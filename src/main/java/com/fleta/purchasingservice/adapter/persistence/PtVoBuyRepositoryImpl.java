@@ -1,8 +1,8 @@
 package com.fleta.purchasingservice.adapter.persistence;
 
 import com.fleta.purchasingservice.domain.model.PtVoBuy;
-import com.fleta.purchasingservice.port.JpaPtVoBuyRepository;
-import com.fleta.purchasingservice.port.PtVoBuyRepository;
+import com.fleta.purchasingservice.port.repository.JpaPtVoBuyRepository;
+import com.fleta.purchasingservice.port.repository.PtVoBuyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +26,6 @@ public class PtVoBuyRepositoryImpl implements PtVoBuyRepository {
 
     @Override
     public <S extends PtVoBuy> S save(S entity) {
-        return null;
+        return repository.save(entity);
     }
 }

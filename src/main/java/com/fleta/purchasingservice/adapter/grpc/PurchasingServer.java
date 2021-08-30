@@ -1,6 +1,6 @@
-package com.fleta.purchasingservice;
+package com.fleta.purchasingservice.adapter.grpc;
 
-import com.fleta.purchasingservice.domain.service.PurchasingService;
+import com.fleta.purchasingservice.domain.service.PurchaseGrpcServiceImpl;
 import io.grpc.ServerBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +15,7 @@ public class PurchasingServer implements ApplicationRunner {
     public int port;
 
     @Autowired
-    private PurchasingService purchasingService;
+    private PurchaseGrpcServiceImpl purchasingService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

@@ -1,9 +1,10 @@
-package com.fleta.purchasingservice.adapter.persistence;
+package com.fleta.purchasingservice.port.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fleta.purchasingservice.adapter.persistence.CacheKey;
+import com.fleta.purchasingservice.adapter.persistence.PurchaseRepositoryImpl;
 import com.fleta.purchasingservice.domain.dto.PurchasingDto;
-import com.fleta.purchasingservice.port.CommonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,16 +17,16 @@ import java.util.stream.Collectors;
 public class RedisRepository implements CommonRepository {
 
     private final RedisTemplate<String, String> redisTemplate;
-    private final PurchaseRepository purchaseRepository; // Optional
+    private final PurchaseRepositoryImpl purchaseRepository; // Optional
     private final String KEY_PREFIX_SQL019_01 = "Sql019_01:";
 
     @Autowired
     public RedisRepository(
             RedisTemplate<String, String> redisTemplate,
-            PurchaseRepository purchaseRepository
+            PurchaseRepositoryImpl purchaseRepositoryImpl
     ) {
         this.redisTemplate = redisTemplate;
-        this.purchaseRepository = purchaseRepository;
+        this.purchaseRepository = purchaseRepositoryImpl;
     }
 
     @Override

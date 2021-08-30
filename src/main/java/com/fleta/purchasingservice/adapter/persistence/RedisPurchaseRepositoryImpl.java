@@ -2,8 +2,8 @@ package com.fleta.purchasingservice.adapter.persistence;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fleta.purchasingservice.domain.model.Sql019_01DtoProjection;
-import com.fleta.purchasingservice.port.RedisDtoRepository;
+import com.fleta.purchasingservice.domain.dto.PurchaseRedisDtoProjection;
+import com.fleta.purchasingservice.port.repository.RedisPurchaseRepository;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class RedisSql019_01DtoRepositoryImpl implements RedisDtoRepository {
+public class RedisPurchaseRepositoryImpl implements RedisPurchaseRepository {
 
     private final RedisTemplate<String, String> redisTemplate;
     private final String KEY_PREFIX = "Sql019_01:";
 
-    public RedisSql019_01DtoRepositoryImpl(
+    public RedisPurchaseRepositoryImpl(
             RedisTemplate<String, String> redisTemplate
     ) {
         this.redisTemplate = redisTemplate;
@@ -38,7 +38,7 @@ public class RedisSql019_01DtoRepositoryImpl implements RedisDtoRepository {
     /**
      * SaId로 그룹화
      */
-    public Map<String, List<String>> groupBySaId(List<Sql019_01DtoProjection> dtoFlux) {
+    public Map<String, List<String>> groupBySaId(List<PurchaseRedisDtoProjection> dtoFlux) {
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, List<String>> map = new HashMap<>();
         dtoFlux.stream().forEach(item -> {

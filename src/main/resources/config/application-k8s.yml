@@ -21,8 +21,8 @@ spring:
     enabled: false
     contexts: prod
     url: jdbc:postgresql://localhost:5432/WatchingService
-  r2dbc:
-    url: r2dbc:postgresql://bmt-vodprogramming.cluster-cojldwm5j4cg.ap-northeast-2.rds.amazonaws.com:5432/mylgdb
+  jdbc:
+    url: jdbc:postgresql://bmt-vodprogramming.cluster-cojldwm5j4cg.ap-northeast-2.rds.amazonaws.com:5432/mylgdb
     username: postgres
     password: BmtAdmin1!
   thymeleaf:
@@ -97,7 +97,7 @@ grpc:
   host: localhost
   port: 6565
 
-repository-type: r2dbc
+repository-type: jdbc
 #repository-type: redis
 springdoc:
   api-docs:

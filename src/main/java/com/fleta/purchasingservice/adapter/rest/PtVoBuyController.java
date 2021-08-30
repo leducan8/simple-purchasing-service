@@ -2,7 +2,7 @@ package com.fleta.purchasingservice.adapter.rest;
 
 import com.fleta.purchasingservice.adapter.rest.errors.BadRequestAlertException;
 import com.fleta.purchasingservice.domain.model.PtVoBuy;
-import com.fleta.purchasingservice.port.JpaPtVoBuyRepository;
+import com.fleta.purchasingservice.port.repository.JpaPtVoBuyRepository;
 import com.megazone.framework.web.util.HeaderUtil;
 import com.megazone.framework.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -24,9 +24,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 @Transactional
-public class PtVoBuyResource {
+public class PtVoBuyController {
 
-    private final Logger log = LoggerFactory.getLogger(PtVoBuyResource.class);
+    private final Logger log = LoggerFactory.getLogger(PtVoBuyController.class);
 
     private static final String ENTITY_NAME = "purchasingServicePtVoBuy";
 
@@ -35,7 +35,7 @@ public class PtVoBuyResource {
 
     private final JpaPtVoBuyRepository ptVoBuyRepository;
 
-    public PtVoBuyResource(JpaPtVoBuyRepository ptVoBuyRepository) {
+    public PtVoBuyController(JpaPtVoBuyRepository ptVoBuyRepository) {
         this.ptVoBuyRepository = ptVoBuyRepository;
     }
 

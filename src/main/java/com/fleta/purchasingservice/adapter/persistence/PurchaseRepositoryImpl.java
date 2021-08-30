@@ -1,7 +1,6 @@
 package com.fleta.purchasingservice.adapter.persistence;
 
 import com.fleta.purchasingservice.domain.dto.PurchasingDto;
-import com.fleta.purchasingservice.domain.model.PurchasingProjection;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +10,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class PurchaseRepository {
+public class PurchaseRepositoryImpl {
 
     @PersistenceContext
     private EntityManager entityManager;

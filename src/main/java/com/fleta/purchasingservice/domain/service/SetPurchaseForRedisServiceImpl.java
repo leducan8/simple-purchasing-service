@@ -1,8 +1,8 @@
 package com.fleta.purchasingservice.domain.service;
 
-import com.fleta.purchasingservice.domain.model.Sql019_01DtoProjection;
-import com.fleta.purchasingservice.adapter.persistence.SetPurchaseForRedisRepository;
-import com.fleta.purchasingservice.port.SetPurchaseForRedisService;
+import com.fleta.purchasingservice.port.repository.SetPurchaseForRedisRepository;
+import com.fleta.purchasingservice.domain.dto.PurchaseRedisDtoProjection;
+import com.fleta.purchasingservice.port.service.SetPurchaseForRedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class SetPurchaseForRedisServiceImpl implements SetPurchaseForRedisServic
     private SetPurchaseForRedisRepository setPurchaseForRedisRepository;
 
     @Override
-    public List<Sql019_01DtoProjection> getSQL019_01List() {
+    public List<PurchaseRedisDtoProjection> getSQL019_01List() {
         return setPurchaseForRedisRepository.nxvod211TobeSql01901();
     }
 }
